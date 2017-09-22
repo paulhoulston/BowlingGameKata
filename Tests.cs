@@ -10,9 +10,17 @@ namespace Tests
             [Fact]
             public void THEN_my_score_is_zero() 
             {
-                var score = -1;
+                var score = new Game().Score();
                 Assert.Equal(0, score);
             }
+        }
+    }
+
+    public class Game
+    {
+        public int Score()
+        {
+            return 0;
         }
     }
 }
