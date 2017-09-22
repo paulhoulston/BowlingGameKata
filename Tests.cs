@@ -8,12 +8,23 @@ namespace Tests
         public class WHEN_I_do_not_knock_over_any_pins
         {
             [Fact]
-            public void THEN_my_score_is_zero() 
+            public void THEN_my_score_is_zero()
             {
                 var score = new Game().Score();
                 Assert.Equal(0, score);
             }
         }
+
+        public class WHEN_I_knock_over_one_pin
+        {
+            [Fact]
+            public void THEN_my_score_is_one()
+            {
+                var score = new Game().Score();
+                Assert.Equal(1, score);
+            }
+        }
+
     }
 
     public class Game
