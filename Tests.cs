@@ -80,8 +80,7 @@ namespace Tests
             public void THEN_my_score_is_24()
             {
                 var game = new Game();
-                game.Roll(5);
-                game.Roll(5);
+                game.Roll(10);
                 game.Roll(3);
                 game.Roll(4);
                 Assert.Equal(24, game.Score());
@@ -99,10 +98,17 @@ namespace Tests
             var score = 0;
             for (var frameNumber = 0; frameNumber < 10; frameNumber++)
             {
-                score += _rolls[2 * frameNumber] + _rolls[2 * frameNumber + 1];
-                if (IsSpare(frameNumber))
+                if (IsStrike(frameNumber))
                 {
-                    score += _rolls[2 * frameNumber + 2];
+                    score += _rolls[2 * frameNumber] + _rolls[2 * frameNumber + 2] + _rolls[2 * frameNumber + 3];
+                }
+                else if (IsSpare(frameNumber))
+                {
+                    score += _rolls[2 * frameNumber] + _rolls[2 * frameNumber + 1] + _rolls[2 * frameNumber + 2];
+                }
+                else
+                {
+                    score += _rolls[2 * frameNumber] + _rolls[2 * frameNumber + 1];
                 }
             }
             return score;
@@ -113,9 +119,18 @@ namespace Tests
             return _rolls[2 * frameNumber] + _rolls[2 * frameNumber + 1] == 10;
         }
 
+        bool IsStrike(int frameNumber)
+        {
+            return _rolls[2 * frameNumber] == 10;
+        }
+
         public void Roll(int numberOfPinsKnockedOver)
         {
             _rolls[_currentRoll++] = numberOfPinsKnockedOver;
+
+            // If strike then mark next roll in frame as zero
+            if(IsStrike(_currentRoll/2))
+                _rolls[_currentRoll++] = 0;
         }
     }
 }
