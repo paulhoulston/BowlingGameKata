@@ -82,13 +82,10 @@ namespace Tests
             var score = 0;
             for (var i = 0; i < 10; i++)
             {
+                score += _rolls[2 * i] + _rolls[2 * i + 1];
                 if (_rolls[2 * i] + _rolls[2 * i + 1] == 10)
                 {
-                    score += _rolls[2 * i] + _rolls[2 * i + 1] + _rolls[2 * i + 2];
-                }
-                else
-                {
-                    score += _rolls[2 * i] + _rolls[2 * i + 1];
+                    score += _rolls[2 * i + 2];
                 }
             }
             return score;
