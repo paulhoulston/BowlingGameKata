@@ -10,8 +10,9 @@ namespace Tests
             [Fact]
             public void THEN_my_score_is_zero()
             {
-                var score = new Game().Score();
-                Assert.Equal(0, score);
+                var game = new Game();
+                game.Roll(0);
+                Assert.Equal(0, game.Score());
             }
         }
 
@@ -20,18 +21,25 @@ namespace Tests
             [Fact]
             public void THEN_my_score_is_one()
             {
-                var score = new Game().Score();
-                Assert.Equal(1, score);
+                var game = new Game();
+                game.Roll(1);
+                Assert.Equal(1, game.Score());
             }
         }
-
     }
 
     public class Game
     {
+        private int _score;
+
         public int Score()
         {
-            return 0;
+            return _score;
+        }
+
+        public void Roll(int numberOfPinsKnockedOver)
+        {
+            _score += numberOfPinsKnockedOver;
         }
     }
 }
