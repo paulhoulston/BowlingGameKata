@@ -98,17 +98,16 @@ namespace Tests
             var score = 0;
             for (var frameNumber = 0; frameNumber < 10; frameNumber++)
             {
+                score += _rolls[2 * frameNumber] + _rolls[2 * frameNumber + 1];
+                
+                if (IsSpare(frameNumber))
+                {
+                    score += _rolls[2 * frameNumber + 2];
+                }
+
                 if (IsStrike(frameNumber))
                 {
-                    score += 10 + _rolls[2 * frameNumber + 2] + _rolls[2 * frameNumber + 3];
-                }
-                else if (IsSpare(frameNumber))
-                {
-                    score += 10 + _rolls[2 * frameNumber + 2];
-                }
-                else
-                {
-                    score += _rolls[2 * frameNumber] + _rolls[2 * frameNumber + 1];
+                    score += _rolls[2 * frameNumber + 3];
                 }
             }
             return score;
