@@ -100,11 +100,11 @@ namespace Tests
             {
                 if (IsStrike(frameNumber))
                 {
-                    score += _rolls[2 * frameNumber] + _rolls[2 * frameNumber + 2] + _rolls[2 * frameNumber + 3];
+                    score += 10 + _rolls[2 * frameNumber + 2] + _rolls[2 * frameNumber + 3];
                 }
                 else if (IsSpare(frameNumber))
                 {
-                    score += _rolls[2 * frameNumber] + _rolls[2 * frameNumber + 1] + _rolls[2 * frameNumber + 2];
+                    score += 10 + _rolls[2 * frameNumber + 2];
                 }
                 else
                 {
