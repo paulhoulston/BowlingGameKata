@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Xunit;
 
 namespace Tests
@@ -73,16 +74,29 @@ namespace Tests
 
     public class Game
     {
-        private int _score;
+        int[] _rolls = new int[21];
+        int _currentRoll;
 
         public int Score()
         {
-            return _score;
+            var score = 0;
+            for (var i = 0; i < 10; i++)
+            {
+                if (_rolls[2 * i] + _rolls[2 * i + 1] == 10)
+                {
+                    score += _rolls[2 * i] + _rolls[2 * i + 1] + _rolls[2 * i + 2];
+                }
+                else
+                {
+                    score += _rolls[2 * i] + _rolls[2 * i + 1];
+                }
+            }
+            return score;
         }
 
         public void Roll(int numberOfPinsKnockedOver)
         {
-            _score += numberOfPinsKnockedOver;
+            _rolls[_currentRoll++] = numberOfPinsKnockedOver;
         }
     }
 }
