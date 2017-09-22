@@ -80,15 +80,20 @@ namespace Tests
         public int Score()
         {
             var score = 0;
-            for (var i = 0; i < 10; i++)
+            for (var frameNumber = 0; frameNumber < 10; frameNumber++)
             {
-                score += _rolls[2 * i] + _rolls[2 * i + 1];
-                if (_rolls[2 * i] + _rolls[2 * i + 1] == 10)
+                score += _rolls[2 * frameNumber] + _rolls[2 * frameNumber + 1];
+                if (IsSpare(frameNumber))
                 {
-                    score += _rolls[2 * i + 2];
+                    score += _rolls[2 * frameNumber + 2];
                 }
             }
             return score;
+        }
+
+        bool IsSpare(int frameNumber)
+        {
+            return _rolls[2 * frameNumber] + _rolls[2 * frameNumber + 1] == 10;
         }
 
         public void Roll(int numberOfPinsKnockedOver)
