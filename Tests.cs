@@ -72,6 +72,23 @@ namespace Tests
         }
     }
 
+    public class GIVEN_I_bowl_a_strike_in_the_first_frame
+    {
+        public class WHEN_I_knock_over_3_pins_on_my_first_throw_AND_4_pins_on_my_second_throw_in_the_second_frame
+        {
+            [Fact]
+            public void THEN_my_score_is_24()
+            {
+                var game = new Game();
+                game.Roll(5);
+                game.Roll(5);
+                game.Roll(3);
+                game.Roll(4);
+                Assert.Equal(24, game.Score());
+            }
+        }
+    }
+
     public class Game
     {
         int[] _rolls = new int[21];
