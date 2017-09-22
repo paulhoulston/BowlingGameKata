@@ -39,7 +39,18 @@ namespace Tests
                 for (var i = 0; i < 20; i++)
                     game.Roll(0);
                 Assert.Equal(0, game.Score());
+            }
+        }
 
+        public class WHEN_I_knock_over_one_pin_on_every_roll
+        {
+            [Fact]
+            public void THEN_my_score_is_20()
+            {
+                var game = new Game();
+                for (var i = 0; i < 20; i++)
+                    game.Roll(1);
+                Assert.Equal(20, game.Score());
             }
         }
     }
